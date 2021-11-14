@@ -239,6 +239,7 @@ Return<RequestStatus> BiometricsFingerprint::setActiveGroup(uint32_t gid,
 
 Return<RequestStatus> BiometricsFingerprint::authenticate(uint64_t operationId,
         uint32_t gid) {
+    mVendorDisplayService->setMode(OP_DISPLAY_AOD_MODE, 0);
     mVendorDisplayService->setMode(OP_DISPLAY_SET_DIM, 0);
     mVendorFpService->updateStatus(OP_ENABLE_FP_LONGPRESS);
     return ErrorFilter(mDevice->authenticate(mDevice, operationId, gid));
